@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/blog_style.css"/>
+</head>
+<body>
+    <div class="construction">🚧 OPEN TO WORK 🚧</div>
+
+    <div class="title-banner">
+        <h1>Technical Blog</h1>
+        <div>★★★ Technical Deep Dive ★★★</div>
+    </div>
+
+    <div class="container">
+        <div class="nav-bar">
+            <button class="nav-button">Home</button>
+            <button class="nav-button">About</button>
+            <button class="nav-button">Projects</button>
+            <button class="nav-button">Experience</button>
+            <button class="nav-button">Blog</button>
+            <button class="nav-button">Resume</button>
+            <button class="nav-button">Contact</button>
+        </div>
+
+        <div class="blog-post">
+            <p class="blog-date">February 15, 2025</p>
+
+            <div class="blog-content">
+                <h1>Understanding Rust's Ownership Model</h1>
+
+                <p>Memory management is one of the most critical aspects of systems programming. In this post, we'll explore how Rust's ownership model provides memory safety without garbage collection.</p>
+
+                <h2>What is Ownership?</h2>
+                <p>At its core, ownership is Rust's most unique feature and plays a critical role in making memory safety guarantees at compile time. Let's break down the key concepts...</p>
+
+                <pre>
+fn main() {
+    let s1 = String::from("hello");
+    let s2 = s1; // s1 is moved here
+    // println!("{}", s1); // This would cause a compilation error
+    println!("{}", s2); // This works fine
+}
+                </pre>
+
+                <h2>The Rules of Ownership</h2>
+                <ul>
+                    <li>Each value has an owner</li>
+                    <li>There can only be one owner at a time</li>
+                    <li>When the owner goes out of scope, the value is dropped</li>
+                </ul>
+
+                <p>Understanding ownership is crucial for writing efficient, safe Rust code. It's what enables Rust to make memory safety guarantees without needing a garbage collector.</p>
+                
+                <h2>Borrowing and References</h2>
+                <p>Instead of transferring ownership, Rust allows you to create references to values that let you access data without taking ownership. This concept is called borrowing...</p>
+
+                <p>This is just a brief introduction to Rust's ownership system. In future posts, we'll dive deeper into borrowing rules, lifetimes, and how these concepts enable Rust's memory safety guarantees.</p>
+            </div>
+
+            <!-- <div class="post-nav">
+                <a href="/blog" class="nav-button">← Back to Blog</a>
+            </div> -->
+
+            <div class="post-nav">
+                <div class="post-nav-container">
+                  <a href="/blog" class="nav-button">← Back to Blog</a>
+                  <button class="like-button">☆ Like</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="email-me">📧 SUBSCRIBE TO BLOG! 📧</button>
+            <p style="margin-top: 20px;">
+                Best viewed in Netscape Navigator at 800x600
+            </p>
+            <div style="margin-top: 10px;">
+                <a href="https://github.com/chickenleaf" style="color: #34495E;">GitHub</a> |
+                <a href="https://chickenleaf.wordpress.com" style="color: #34495E;">WordPress</a> |
+                <a href="https://leetcode.com/u/chickenleaf/" style="color: #34495E;">LeetCode</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

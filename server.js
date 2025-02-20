@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -6,7 +7,14 @@ const errorHandler = require('./middleware/errorHandler') // NOTE: custom middle
 const cookieParser = require('cookie-parser') // NOTE: third-party middleware
 const cors = require('cors') // NOTE: makes our API accessable to others/ makes everything available to the public
 const corsOptions = require('./config/corsOptions')
+const connectDB = require('./config/dbConn')
+const mongoose = require('mongoose')
+const { logEvents } = require('./middleware/logger')
 const PORT = process.env.PORT || 3500
+
+console.log(process.env.NODE_ENV)
+
+connectDB()
 
 app.use(logger)
 
@@ -18,7 +26,15 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, '/public'))) // NOTE: static is built-in middleware
 
-app.use('/', require('./routes/root'))
+app.use('/', require('./routes/root')) // basic routing
+
+// NOTE: localhost:3500/blog will take me from here to routes/blogRoutes
+// there we have code to maintain the GET, POST, PATCH, DELETE requests for the same localhost:3500/blog url
+// so things in routes/blogRoutes tells you which function to execute if GET, POST, PATCH, DELETE request is sent to localhost:3500/blog
+// now these functions are properly defined in /controllers/blogsController
+// in /controllers/blogsController we have the functions that interact with our blogPost database or collection and make CRUD happen
+// the schema for what each single entry of blogPost collection or database looks like is defined in /models/Blog.js
+app.use('/blog', require('./routes/blogRoutes'))
 
 // NOTE: this 404 goes after all the other routes
 app.all('*', (req, res) => {
@@ -34,4 +50,12 @@ app.all('*', (req, res) => {
 
 app.use(errorHandler)
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB')
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+})
+
+mongoose.connection.on('error', err => {
+    console.log(err)
+    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
+})

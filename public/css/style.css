@@ -3,12 +3,12 @@
     padding: 0;
     box-sizing: border-box;
     }
-    
+
     @font-face {
     font-family: 'MS Sans Serif';
     src: url('https://unpkg.com/win95.css@0.1.0/fonts/ms_sans_serif.woff2') format('woff2');
     }
-    
+
     body {
     background: #FFFDD0;
     color: #ECF0F1;
@@ -16,12 +16,12 @@
     background-image: url('https://placehold.co/100x100/transparent/AAAAAA?text=200+OK');
     animation: backgroundScroll 20s linear infinite;
     }
-    
+
     @keyframes backgroundScroll {
     from { background-position: 0 0; }
     to { background-position: 100% 100%; }
     }
-    
+
     .construction {
     position: fixed;
     top: 10px;
@@ -50,7 +50,7 @@
     }
     
     .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     }
@@ -105,7 +105,7 @@
     margin: 20px 0;
     flex-wrap: wrap;
     }
-    
+
     .nav-button {
     background: linear-gradient(to bottom, #3498DB, #2980B9);
     border: 3px outset #2980B9;
@@ -117,7 +117,7 @@
     cursor: pointer;
     text-shadow: 1px 1px #2C3E50;
     }
-    
+
     .nav-button:hover {
     background: linear-gradient(to bottom, #2980B9, #3498DB);
     border-style: inset;
