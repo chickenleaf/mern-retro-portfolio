@@ -10,7 +10,7 @@ const blogPostSchema = new mongoose.Schema({
           type: String,
           required: true
         },
-        slug: {
+        slug: {           // NOTE: this is the only unique field for each blog
           type: String,
           required: true,
           unique: true    // For URLs like /blog/rust-ownership
